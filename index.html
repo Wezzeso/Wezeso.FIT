@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GymForge - Your Ultimate Gym Training Planner</title>
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🏋️</text></svg>">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <div class="main-container">
+        <header>
+            <div class="nav-container">
+                <a href="#" class="logo">🏋️ Wezeso.FIT</a>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#muscle-groups">Muscle Groups</a></li>
+                        <li><a href="#schedule">Schedule</a></li>
+                        <li><a href="#workout-notes">Notes</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <aside>
+            <section class="gym-stats">
+                <h3>Gym Stats</h3>
+                <div class="stat-item">
+                    <label>Workouts This Week</label>
+                    <input type="number" id="workouts-count" value="0" min="0" max="20">
+                </div>
+                <div class="stat-item">
+                    <label>Total Exercises</label>
+                    <input type="number" id="exercises-count" value="24" min="0" max="100">
+                </div>
+                <div class="stat-item">
+                    <label>Current Weight (kg)</label>
+                    <input type="number" id="current-weight" value="70" min="30" max="200" step="0.1">
+                </div>
+                <div class="stat-item">
+                    <label>Target Weight</label>
+                    <input type="number" id="target-weight" value="75" min="30" max="200" step="0.1">
+                </div>
+                <div class="stat-item">
+                    <label>Bench press</label>
+                    <input type="number" id="gym-experience" value="1" min="0" max="500" step="0.5">
+                </div>
+                <button class="btn btn-small" onclick="saveStats()">Save Stats</button>
+            </section>
+        </aside>
+
+        <main>
+            <section id="home">
+                <h1 id="main-heading">Welcome to Wezeso.FIT</h1>
+                <p style="color: #00d4aa; font-size: 1.2rem;">Your ultimate gym training planner and schedule builder</p>
+                
+                <div class="hero-content">
+                    <p>Transform your fitness journey with our comprehensive workout planner. Design custom routines, track your progress, and achieve your fitness goals with precision.</p>
+                </div>
+            </section>
+
+            <section id="muscle-groups">
+                <h2>Muscle Groups</h2>
+                <div class="muscle-groups">
+                    <article class="muscle-card" data-muscle="chest">
+                        <div class="muscle-icon">🍒</div>
+                        <h3>Chest</h3>
+                        <p>Build a powerful upper body with these chest exercises</p>
+                        <div class="exercise-list">
+                            <div class="exercise-item" draggable="true">Bench Press</div>
+                            <div class="exercise-item" draggable="true">Push-ups</div>
+                            <div class="exercise-item" draggable="true">Chest Flyes</div>
+                            <div class="exercise-item" draggable="true">Incline Press</div>
+                        </div>
+                    </article>
+
+                    <article class="muscle-card" data-muscle="back">
+                        <div class="muscle-icon">🛡️</div>
+                        <h3>Back</h3>
+                        <p>Strengthen your back with these essential exercises</p>
+                        <div class="exercise-list">
+                            <div class="exercise-item" draggable="true">Pull-ups</div>
+                            <div class="exercise-item" draggable="true">Deadlifts</div>
+                            <div class="exercise-item" draggable="true">Bent-over Rows</div>
+                            <div class="exercise-item" draggable="true">Lat Pulldowns</div>
+                        </div>
+                    </article>
+
+                    <article class="muscle-card" data-muscle="legs">
+                        <div class="muscle-icon">🦵</div>
+                        <h3>Legs</h3>
+                        <p>Build powerful legs with these compound movements</p>
+                        <div class="exercise-list">
+                            <div class="exercise-item" draggable="true">Squats</div>
+                            <div class="exercise-item" draggable="true">Lunges</div>
+                            <div class="exercise-item" draggable="true">Leg Press</div>
+                            <div class="exercise-item" draggable="true">Calf Raises</div>
+                        </div>
+                    </article>
+
+                    <article class="muscle-card" data-muscle="arms">
+                        <div class="muscle-icon">💪</div>
+                        <h3>Arms</h3>
+                        <p>Sculpt impressive arms with these targeted exercises</p>
+                        <div class="exercise-list">
+                            <div class="exercise-item" draggable="true">Bicep Curls</div>
+                            <div class="exercise-item" draggable="true">Tricep Dips</div>
+                            <div class="exercise-item" draggable="true">Hammer Curls</div>
+                            <div class="exercise-item" draggable="true">Close-grip Press</div>
+                        </div>
+                    </article>
+
+                    <article class="muscle-card" data-muscle="shoulders">
+                        <div class="muscle-icon">🏔️</div>
+                        <h3>Shoulders</h3>
+                        <p>Develop well-rounded shoulders with these movements</p>
+                        <div class="exercise-list">
+                            <div class="exercise-item" draggable="true">Shoulder Press</div>
+                            <div class="exercise-item" draggable="true">Lateral Raises</div>
+                            <div class="exercise-item" draggable="true">Front Raises</div>
+                            <div class="exercise-item" draggable="true">Rear Delt Flyes</div>
+                        </div>
+                    </article>
+
+                    <article class="muscle-card" data-muscle="core">
+                        <div class="muscle-icon">⚡</div>
+                        <h3>Core</h3>
+                        <p>Build a strong foundation with core exercises</p>
+                        <div class="exercise-list">
+                            <div class="exercise-item" draggable="true">Planks</div>
+                            <div class="exercise-item" draggable="true">Crunches</div>
+                            <div class="exercise-item" draggable="true">Russian Twists</div>
+                            <div class="exercise-item" draggable="true">Mountain Climbers</div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section id="schedule" class="schedule-builder">
+                <h2>Weekly Schedule Builder</h2>
+                <p>Drag exercises from the muscle groups above into your weekly schedule</p>
+                
+                <div class="schedule-grid">
+                    <div class="day-column" data-day="monday">
+                        <div class="day-header">Monday</div>
+                        <div class="exercises-container"></div>
+                    </div>
+                    <div class="day-column" data-day="tuesday">
+                        <div class="day-header">Tuesday</div>
+                        <div class="exercises-container"></div>
+                    </div>
+                    <div class="day-column" data-day="wednesday">
+                        <div class="day-header">Wednesday</div>
+                        <div class="exercises-container"></div>
+                    </div>
+                    <div class="day-column" data-day="thursday">
+                        <div class="day-header">Thursday</div>
+                        <div class="exercises-container"></div>
+                    </div>
+                    <div class="day-column" data-day="friday">
+                        <div class="day-header">Friday</div>
+                        <div class="exercises-container"></div>
+                    </div>
+                    <div class="day-column" data-day="saturday">
+                        <div class="day-header">Saturday</div>
+                        <div class="exercises-container"></div>
+                    </div>
+                    <div class="day-column" data-day="sunday">
+                        <div class="day-header">Sunday</div>
+                        <div class="exercises-container"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="workout-notes" class="form-container">
+                <h2>Workout Notes</h2>
+                <div class="todo-container">
+                    <div class="todo-input">
+                        <input type="text" id="todo-input" placeholder="Add a workout note...">
+                        <button class="btn" onclick="addTodo()">Add Note</button>
+                    </div>
+                    <div id="todo-list"></div>
+                </div>
+            </section>
+
+            <section class="form-container">
+                <h2>Join Wezeso!</h2>
+                <form id="registration-form">
+                    <div class="form-group">
+                        <label for="name">Full Name*</label>
+                        <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                        <div class="error-message" id="name-error"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address*</label>
+                        <input type="email" id="email" name="email" required placeholder="Enter your email">
+                        <div class="error-message" id="email-error"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password*</label>
+                        <input type="password" id="password" name="password" required placeholder="Create a password">
+                        <div class="error-message" id="password-error"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirm-password">Confirm Password*</label>
+                        <input type="password" id="confirm-password" name="confirm-password" required placeholder="Confirm your password">
+                        <div class="error-message" id="confirm-password-error"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Gender</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="male" name="gender" value="male">
+                                <label for="male">Male</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="female" name="gender" value="female">
+                                <label for="female">Female</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="other" name="gender" value="other">
+                                <label for="other">Other</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Fitness Interests</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="strength" name="hobbies" value="strength">
+                                <label for="strength">Strength Training</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="cardio" name="hobbies" value="cardio">
+                                <label for="cardio">Cardio</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="yoga" name="hobbies" value="yoga">
+                                <label for="yoga">Yoga</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="crossfit" name="hobbies" value="crossfit">
+                                <label for="crossfit">CrossFit</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="country">Country</label>
+                        <select id="country" name="country">
+                            <option value="">Select your country</option>
+                            <option value="us">United States</option>
+                            <option value="ca">Kazakhstan</option>
+                            <option value="uk">United Kingdom</option>
+                            <option value="au">Australia</option>
+                            <option value="de">Germany</option>
+                            <option value="fr">Russia</option>
+                            <option value="jp">Japan</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn">Create Account</button>
+                        <button type="reset" class="btn btn-secondary">Reset Form</button>
+                    </div>
+                </form>
+            </section>
+        </main>
+
+        <footer>
+            <div class="contact-info">
+                <h3>Contact Wezeso</h3>
+                <address>
+                    <p>Email: <a href="mailto:info@gymforge.com">weezzeeso@gmail.com</a></p>
+                    <p>Phone: <a href="tel:+1234567890">+7 775 965 1206</a></p>
+                </address>
+                <p>&copy; poshel otsuda </p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
